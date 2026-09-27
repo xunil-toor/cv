@@ -68,14 +68,14 @@ export function ContactSection() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 mb-3">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 mb-3">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
             {t.contact.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
             {t.contact.title}
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-zinc-400">
+          <p className="mt-3 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
             {t.contact.subtitle}
           </p>
         </div>
@@ -83,20 +83,20 @@ export function ContactSection() {
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {/* Direct Coordinates Card */}
-          <div className="p-8 rounded-3xl bg-zinc-900/70 border border-zinc-800 backdrop-blur-xs flex flex-col justify-between space-y-6">
+          <div className="p-8 rounded-3xl bg-white/90 dark:bg-zinc-900/70 border border-zinc-200 dark:border-zinc-800 backdrop-blur-xs flex flex-col justify-between space-y-6 shadow-md dark:shadow-none">
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2">
                 {t.contact.directCoordinates}
               </h3>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 {t.contact.fastResponse}
               </p>
 
               <div className="mt-6 space-y-4">
                 {/* Email Item */}
-                <div className="p-4 rounded-2xl bg-zinc-950/80 border border-zinc-800/80 flex items-center justify-between">
+                <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-950/80 border border-zinc-200 dark:border-zinc-800/80 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-blue-950/80 text-blue-400 border border-blue-800/50">
+                    <div className="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
                       <IconMail className="w-5 h-5" />
                     </div>
                     <div>
@@ -105,7 +105,7 @@ export function ContactSection() {
                       </span>
                       <a
                         href={`mailto:${cvData.personal.email}`}
-                        className="text-sm font-semibold text-zinc-100 hover:text-blue-400 transition-colors"
+                        className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         {cvData.personal.email}
                       </a>
@@ -114,11 +114,11 @@ export function ContactSection() {
 
                   <button
                     onClick={copyEmail}
-                    className="p-2 rounded-xl text-zinc-400 hover:text-white bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/60 transition-colors"
+                    className="p-2 rounded-xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/60 transition-colors shadow-xs dark:shadow-none"
                     title={t.hero.copyEmailTitle}
                   >
                     {copiedEmail ? (
-                      <IconCheck className="w-4 h-4 text-emerald-400" />
+                      <IconCheck className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
                     ) : (
                       <IconCopy className="w-4 h-4" />
                     )}
@@ -126,9 +126,9 @@ export function ContactSection() {
                 </div>
 
                 {/* Phone Item */}
-                <div className="p-4 rounded-2xl bg-zinc-950/80 border border-zinc-800/80 flex items-center justify-between">
+                <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-950/80 border border-zinc-200 dark:border-zinc-800/80 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-xl bg-indigo-950/80 text-indigo-400 border border-indigo-800/50">
+                    <div className="p-2.5 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800/50">
                       <IconPhone className="w-5 h-5" />
                     </div>
                     <div>
@@ -137,7 +137,7 @@ export function ContactSection() {
                       </span>
                       <a
                         href={`tel:${cvData.personal.phone}`}
-                        className="text-sm font-semibold text-zinc-100 hover:text-blue-400 transition-colors"
+                        className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       >
                         {cvData.personal.phoneDisplay}
                       </a>
@@ -146,11 +146,11 @@ export function ContactSection() {
 
                   <button
                     onClick={copyPhone}
-                    className="p-2 rounded-xl text-zinc-400 hover:text-white bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/60 transition-colors"
+                    className="p-2 rounded-xl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/60 transition-colors shadow-xs dark:shadow-none"
                     title={t.hero.copyPhoneTitle}
                   >
                     {copiedPhone ? (
-                      <IconCheck className="w-4 h-4 text-emerald-400" />
+                      <IconCheck className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
                     ) : (
                       <IconCopy className="w-4 h-4" />
                     )}
@@ -158,18 +158,18 @@ export function ContactSection() {
                 </div>
 
                 {/* Location Item */}
-                <div className="p-4 rounded-2xl bg-zinc-950/80 border border-zinc-800/80 flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-purple-950/80 text-purple-400 border border-purple-800/50">
+                <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-zinc-950/80 border border-zinc-200 dark:border-zinc-800/80 flex items-center gap-3">
+                  <div className="p-2.5 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-800/50">
                     <IconMapPin className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 block">
                       {t.contact.locationLabel}
                     </span>
-                    <span className="text-sm font-semibold text-zinc-100">
+                    <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                       {cvData.personal.location}
                     </span>
-                    <span className="text-xs text-zinc-400 block mt-0.5">
+                    <span className="text-xs text-zinc-500 dark:text-zinc-400 block mt-0.5">
                       {cvData.personal.mobility}
                     </span>
                   </div>
@@ -177,19 +177,19 @@ export function ContactSection() {
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-emerald-950/30 border border-emerald-800/40 text-xs text-emerald-300 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <div className="p-3.5 rounded-2xl bg-emerald-100/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/40 text-xs text-emerald-800 dark:text-emerald-300 flex items-center gap-2 font-medium">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping" />
               <span>{cvData.personal.availability}</span>
             </div>
           </div>
 
           {/* Quick Email Launcher for Recruiters */}
-          <div className="p-8 rounded-3xl bg-zinc-900/70 border border-zinc-800 backdrop-blur-xs flex flex-col justify-between">
+          <div className="p-8 rounded-3xl bg-white/90 dark:bg-zinc-900/70 border border-zinc-200 dark:border-zinc-800 backdrop-blur-xs flex flex-col justify-between shadow-md dark:shadow-none">
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-2">
                 {t.contact.initiateExchange}
               </h3>
-              <p className="text-xs text-zinc-400 mb-6">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mb-6">
                 {t.contact.selectNeed}
               </p>
 
@@ -199,36 +199,36 @@ export function ContactSection() {
                   onClick={() => setMessageType("cdi")}
                   className={`w-full p-3 rounded-xl text-left text-xs font-medium border transition-all flex items-center justify-between ${
                     messageType === "cdi"
-                      ? "bg-blue-950/70 border-blue-700 text-blue-200 shadow-sm"
-                      : "bg-zinc-950/60 border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                      ? "bg-blue-50 dark:bg-blue-950/70 border-blue-500 dark:border-blue-700 text-blue-900 dark:text-blue-200 shadow-xs"
+                      : "bg-zinc-50 dark:bg-zinc-950/60 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
                   }`}
                 >
                   <span>{t.contact.optCdi}</span>
-                  {messageType === "cdi" && <IconCheck className="w-4 h-4 text-blue-400" />}
+                  {messageType === "cdi" && <IconCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
                 </button>
 
                 <button
                   onClick={() => setMessageType("freelance")}
                   className={`w-full p-3 rounded-xl text-left text-xs font-medium border transition-all flex items-center justify-between ${
                     messageType === "freelance"
-                      ? "bg-blue-950/70 border-blue-700 text-blue-200 shadow-sm"
-                      : "bg-zinc-950/60 border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                      ? "bg-blue-50 dark:bg-blue-950/70 border-blue-500 dark:border-blue-700 text-blue-900 dark:text-blue-200 shadow-xs"
+                      : "bg-zinc-50 dark:bg-zinc-950/60 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
                   }`}
                 >
                   <span>{t.contact.optFreelance}</span>
-                  {messageType === "freelance" && <IconCheck className="w-4 h-4 text-blue-400" />}
+                  {messageType === "freelance" && <IconCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
                 </button>
 
                 <button
                   onClick={() => setMessageType("interview")}
                   className={`w-full p-3 rounded-xl text-left text-xs font-medium border transition-all flex items-center justify-between ${
                     messageType === "interview"
-                      ? "bg-blue-950/70 border-blue-700 text-blue-200 shadow-sm"
-                      : "bg-zinc-950/60 border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                      ? "bg-blue-50 dark:bg-blue-950/70 border-blue-500 dark:border-blue-700 text-blue-900 dark:text-blue-200 shadow-xs"
+                      : "bg-zinc-50 dark:bg-zinc-950/60 border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
                   }`}
                 >
                   <span>{t.contact.optInterview}</span>
-                  {messageType === "interview" && <IconCheck className="w-4 h-4 text-blue-400" />}
+                  {messageType === "interview" && <IconCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
                 </button>
               </div>
             </div>

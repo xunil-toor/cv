@@ -68,27 +68,27 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fadeIn">
       <div 
-        className="relative w-full max-w-2xl bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-800 bg-zinc-950/50">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/50">
           <div className="flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <div>
-              <h3 id="modal-title" className="text-base font-semibold text-zinc-100">
+              <h3 id="modal-title" className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
                 {t.recruiterModal.title}
               </h3>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400">
                 {t.recruiterModal.subtitle}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-zinc-400 hover:text-zinc-100 p-1.5 rounded-lg hover:bg-zinc-800 transition-colors"
+            className="text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             aria-label={t.recruiterModal.closeBtn}
           >
             ✕
@@ -96,14 +96,14 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
         </div>
 
         {/* Language switch & actions */}
-        <div className="flex items-center justify-between px-6 py-3 bg-zinc-900/80 border-b border-zinc-800/80">
-          <div className="flex items-center gap-1 bg-zinc-950 p-1 rounded-lg border border-zinc-800 text-xs font-medium">
+        <div className="flex items-center justify-between px-6 py-3 bg-zinc-50/80 dark:bg-zinc-900/80 border-b border-zinc-200 dark:border-zinc-800/80">
+          <div className="flex items-center gap-1 bg-zinc-100 dark:bg-zinc-950 p-1 rounded-lg border border-zinc-200 dark:border-zinc-800 text-xs font-medium">
             <button
               onClick={() => setFormat("fr")}
               className={`px-3 py-1 rounded-md transition-colors ${
                 format === "fr"
                   ? "bg-blue-600 text-white shadow-xs"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
               }`}
             >
               {t.recruiterModal.btnFr}
@@ -113,7 +113,7 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
               className={`px-3 py-1 rounded-md transition-colors ${
                 format === "en"
                   ? "bg-blue-600 text-white shadow-xs"
-                  : "text-zinc-400 hover:text-zinc-200"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
               }`}
             >
               {t.recruiterModal.btnEn}
@@ -141,16 +141,16 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
         </div>
 
         {/* Content area */}
-        <div className="p-6 overflow-y-auto font-mono text-xs text-zinc-300 leading-relaxed bg-zinc-950/60 whitespace-pre-wrap select-all">
+        <div className="p-6 overflow-y-auto font-mono text-xs text-zinc-800 dark:text-zinc-300 leading-relaxed bg-zinc-50 dark:bg-zinc-950/60 whitespace-pre-wrap select-all">
           {currentText}
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-6 py-3 border-t border-zinc-800 bg-zinc-950/80 text-xs text-zinc-400">
+        <div className="flex items-center justify-between px-6 py-3 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/80 text-xs text-zinc-500 dark:text-zinc-400">
           <span>{t.recruiterModal.footerNote}</span>
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 transition-colors"
+            className="px-4 py-1.5 rounded-lg bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 transition-colors"
           >
             {t.recruiterModal.closeBtn}
           </button>

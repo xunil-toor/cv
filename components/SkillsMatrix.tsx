@@ -52,19 +52,19 @@ export function SkillsMatrix() {
   }, [allSkillsList, selectedCategory, searchQuery]);
 
   return (
-    <section id="competences" className="py-20 bg-zinc-950/60 border-y border-zinc-900">
+    <section id="competences" className="py-20 bg-zinc-50/80 dark:bg-zinc-950/60 border-y border-zinc-200 dark:border-zinc-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-950/80 text-blue-400 border border-blue-800/60 mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-950/80 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60 mb-3">
             <IconCode className="w-3.5 h-3.5" />
             {t.skills.badge}
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight">
             {t.skills.title}
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-zinc-400">
+          <p className="mt-3 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
             {t.skills.subtitle}
           </p>
         </div>
@@ -73,7 +73,7 @@ export function SkillsMatrix() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
           
           {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-zinc-900 border border-zinc-800 rounded-2xl w-full md:w-auto">
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl w-full md:w-auto shadow-xs">
             {categories.map((cat) => {
               const Icon = cat.icon;
               const isActive = selectedCategory === cat.id;
@@ -83,8 +83,8 @@ export function SkillsMatrix() {
                   onClick={() => setSelectedCategory(cat.id)}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium transition-all ${
                     isActive
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/60"
+                      ? "bg-blue-600 text-white shadow-xs"
+                      : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/60"
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -101,9 +101,9 @@ export function SkillsMatrix() {
               placeholder={t.skills.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full pl-9 pr-4 py-2 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors shadow-xs"
             />
-            <div className="absolute left-3 top-2.5 text-zinc-500 pointer-events-none">
+            <div className="absolute left-3 top-2.5 text-zinc-400 dark:text-zinc-500 pointer-events-none">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -111,7 +111,7 @@ export function SkillsMatrix() {
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-3 top-2.5 text-xs text-zinc-500 hover:text-zinc-300"
+                className="absolute right-3 top-2.5 text-xs text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300"
               >
                 ✕
               </button>
@@ -130,8 +130,8 @@ export function SkillsMatrix() {
                 key={idx}
                 className={`p-4 rounded-xl border transition-all ${
                   skill.badge
-                    ? "bg-gradient-to-b from-blue-950/30 to-zinc-900/90 border-blue-800/50 hover:border-blue-700"
-                    : "bg-zinc-900/60 border-zinc-800/80 hover:border-zinc-700"
+                    ? "bg-gradient-to-b from-blue-50/70 to-white dark:from-blue-950/30 dark:to-zinc-900/90 border-blue-200 dark:border-blue-800/50 hover:border-blue-400 dark:hover:border-blue-700 shadow-xs dark:shadow-none"
+                    : "bg-white dark:bg-zinc-900/60 border-zinc-200 dark:border-zinc-800/80 hover:border-zinc-400 dark:hover:border-zinc-700 shadow-xs dark:shadow-none"
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
@@ -139,13 +139,13 @@ export function SkillsMatrix() {
                     <span
                       className={`w-2 h-2 rounded-full ${
                         isExpert
-                          ? "bg-emerald-400"
+                          ? "bg-emerald-500 dark:bg-emerald-400"
                           : isAvance
-                          ? "bg-blue-400"
-                          : "bg-amber-400"
+                          ? "bg-blue-500 dark:bg-blue-400"
+                          : "bg-amber-500 dark:bg-amber-400"
                       }`}
                     />
-                    <span className="font-semibold text-sm text-zinc-100">
+                    <span className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">
                       {skill.name}
                     </span>
                   </div>
@@ -157,17 +157,17 @@ export function SkillsMatrix() {
                   )}
                 </div>
 
-                <div className="mt-3 flex items-center justify-between text-xs text-zinc-400 pt-2 border-t border-zinc-800/60">
+                <div className="mt-3 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400 pt-2 border-t border-zinc-100 dark:border-zinc-800/60">
                   <span className="text-[11px] text-zinc-500 truncate max-w-[120px]">
                     {skill.categoryTitle}
                   </span>
                   <span
                     className={`font-medium ${
                       isExpert
-                        ? "text-emerald-400"
+                        ? "text-emerald-600 dark:text-emerald-400"
                         : isAvance
-                        ? "text-blue-400"
-                        : "text-amber-400"
+                        ? "text-blue-600 dark:text-blue-400"
+                        : "text-amber-600 dark:text-amber-400"
                     }`}
                   >
                     {skill.level}
@@ -179,18 +179,18 @@ export function SkillsMatrix() {
         </div>
 
         {/* Level Legend */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-600 dark:text-zinc-400">
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-            <span><strong className="text-zinc-200">{t.skills.legendExpert}</strong> {t.skills.legendExpertDesc}</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+            <span><strong className="text-zinc-800 dark:text-zinc-200">{t.skills.legendExpert}</strong> {t.skills.legendExpertDesc}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-400" />
-            <span><strong className="text-zinc-200">{t.skills.legendAdvanced}</strong> {t.skills.legendAdvancedDesc}</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+            <span><strong className="text-zinc-800 dark:text-zinc-200">{t.skills.legendAdvanced}</strong> {t.skills.legendAdvancedDesc}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-            <span><strong className="text-zinc-200">{t.skills.legendOperational}</strong> {t.skills.legendOperationalDesc}</span>
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500 dark:bg-amber-400" />
+            <span><strong className="text-zinc-800 dark:text-zinc-200">{t.skills.legendOperational}</strong> {t.skills.legendOperationalDesc}</span>
           </div>
         </div>
 

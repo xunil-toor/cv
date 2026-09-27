@@ -5,6 +5,7 @@ import { useLanguage } from "@/context/LanguageContext";
 import { IconCopy, IconPrint, IconCheck, IconMail, IconPhone } from "./Icons";
 import { RecruiterModal } from "./RecruiterModal";
 import { LanguageToggle } from "./LanguageToggle";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
   const { cvData, t } = useLanguage();
@@ -36,12 +37,12 @@ export function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 no-print ${
           isScrolled
-            ? "bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 shadow-lg shadow-black/25 py-2.5"
-            : "bg-zinc-950/70 backdrop-blur-sm border-b border-zinc-800/40 py-3.5"
+            ? "bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-lg shadow-zinc-900/5 dark:shadow-black/25 py-2.5"
+            : "bg-white/80 dark:bg-zinc-950/70 backdrop-blur-sm border-b border-zinc-200/50 dark:border-zinc-800/40 py-3.5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Ligne 1 : Logo, Titre & Toggle de langue / Actions */}
+          {/* Ligne 1 : Logo, Titre & Toggles (Langue / Thème) / Actions */}
           <div className="flex items-center justify-between gap-4">
             {/* Logo / Name */}
             <a href="#top" className="flex items-center gap-3 group">
@@ -50,24 +51,27 @@ export function Navbar() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-zinc-100 tracking-tight group-hover:text-blue-400 transition-colors">
+                  <span className="font-bold text-zinc-900 dark:text-zinc-100 tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {cvData.personal.name}
                   </span>
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1 animate-pulse"></span>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800/60">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 mr-1 animate-pulse"></span>
                     {t.navbar.availableBadge}
                   </span>
                 </div>
-                <p className="text-xs text-zinc-400 font-mono truncate max-w-[220px] sm:max-w-none">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 font-mono truncate max-w-[220px] sm:max-w-none">
                   {t.navbar.subtitle}
                 </p>
               </div>
             </a>
 
-            {/* Actions Ligne 1 (Toggle de langue en premier & Outils recruteur) */}
+            {/* Actions Ligne 1 (Toggle de langue & Toggle de thème & Outils recruteur) */}
             <div className="flex items-center gap-2">
               {/* Language Switcher Toggle */}
               <LanguageToggle variant="desktop" />
+
+              {/* Theme Switcher Toggle */}
+              <ThemeToggle variant="desktop" />
 
               <button
                 onClick={() => setIsModalOpen(true)}
@@ -80,7 +84,7 @@ export function Navbar() {
 
               <button
                 onClick={handlePrint}
-                className="p-2 rounded-xl text-zinc-300 bg-zinc-900/80 border border-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors"
+                className="p-2 rounded-xl text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white transition-colors"
                 title={t.navbar.printTitle}
                 aria-label={t.navbar.printTitle}
               >
@@ -89,13 +93,13 @@ export function Navbar() {
 
               <button
                 onClick={handleCopyEmail}
-                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-zinc-300 bg-zinc-900/80 border border-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors"
+                className="hidden xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white transition-colors"
                 title={t.navbar.copyEmail}
               >
                 {copiedEmail ? (
                   <>
-                    <IconCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">{t.navbar.emailCopied}</span>
+                    <IconCheck className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
+                    <span className="text-emerald-600 dark:text-emerald-400">{t.navbar.emailCopied}</span>
                   </>
                 ) : (
                   <>
@@ -108,7 +112,7 @@ export function Navbar() {
               {/* Mobile menu toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 rounded-xl text-zinc-300 bg-zinc-900/80 border border-zinc-800 hover:bg-zinc-800 text-sm"
+                className="lg:hidden p-2 rounded-xl text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-sm"
                 aria-label={t.navbar.menu}
               >
                 {mobileMenuOpen ? "✕" : "☰"}
@@ -117,41 +121,41 @@ export function Navbar() {
           </div>
 
           {/* Ligne 2 : Navbar de navigation */}
-          <div className="hidden lg:flex items-center justify-center pt-2.5 mt-2 border-t border-zinc-800/50">
-            <nav className="flex items-center gap-1.5 text-sm font-medium text-zinc-300 bg-zinc-900/70 border border-zinc-800/80 px-2 py-1 rounded-full backdrop-blur-md shadow-inner">
+          <div className="hidden lg:flex items-center justify-center pt-2.5 mt-2 border-t border-zinc-200/60 dark:border-zinc-800/50">
+            <nav className="flex items-center gap-1.5 text-sm font-medium text-zinc-600 dark:text-zinc-300 bg-zinc-100/90 dark:bg-zinc-900/70 border border-zinc-200 dark:border-zinc-800/80 px-2 py-1 rounded-full backdrop-blur-md shadow-xs dark:shadow-inner">
               <a
                 href="#presentation"
-                className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-zinc-800/90 transition-colors"
+                className="px-3.5 py-1.5 rounded-full hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/70 dark:hover:bg-zinc-800/90 transition-colors"
               >
                 {t.navbar.profile}
               </a>
               <a
                 href="#competences"
-                className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-zinc-800/90 transition-colors"
+                className="px-3.5 py-1.5 rounded-full hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/70 dark:hover:bg-zinc-800/90 transition-colors"
               >
                 {t.navbar.skills}
               </a>
               <a
                 href="#experiences"
-                className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-zinc-800/90 transition-colors"
+                className="px-3.5 py-1.5 rounded-full hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/70 dark:hover:bg-zinc-800/90 transition-colors"
               >
                 {t.navbar.experiences}
               </a>
               <a
                 href="#leadership"
-                className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-zinc-800/90 transition-colors"
+                className="px-3.5 py-1.5 rounded-full hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/70 dark:hover:bg-zinc-800/90 transition-colors"
               >
                 {t.navbar.leadership}
               </a>
               <a
                 href="#formation"
-                className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-zinc-800/90 transition-colors"
+                className="px-3.5 py-1.5 rounded-full hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/70 dark:hover:bg-zinc-800/90 transition-colors"
               >
                 {t.navbar.education}
               </a>
               <a
                 href="#contact"
-                className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-zinc-800/90 transition-colors text-blue-400 font-semibold"
+                className="px-3.5 py-1.5 rounded-full hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200/70 dark:hover:bg-zinc-800/90 transition-colors text-blue-600 dark:text-blue-400 font-semibold"
               >
                 {t.navbar.contact}
               </a>
@@ -160,75 +164,78 @@ export function Navbar() {
 
           {/* Mobile menu dropdown */}
           {mobileMenuOpen && (
-            <div className="lg:hidden mt-3 p-4 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-xl space-y-3">
-              {/* Mobile Language Toggle */}
-              <LanguageToggle variant="mobile" />
+            <div className="lg:hidden mt-3 p-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-xl space-y-3">
+              {/* Mobile Language & Theme Toggles */}
+              <div className="space-y-2">
+                <LanguageToggle variant="mobile" />
+                <ThemeToggle variant="mobile" />
+              </div>
 
               <nav className="flex flex-col space-y-2 text-sm font-medium">
                 <a
                   href="#presentation"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-white"
+                  className="px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white"
                 >
                   {t.navbar.profile}
                 </a>
                 <a
                   href="#competences"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-white"
+                  className="px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white"
                 >
                   {t.navbar.skills}
                 </a>
                 <a
                   href="#experiences"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-white"
+                  className="px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white"
                 >
                   {t.navbar.experiences}
                 </a>
                 <a
                   href="#leadership"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-white"
+                  className="px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white"
                 >
                   {t.navbar.leadership}
                 </a>
                 <a
                   href="#formation"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800 hover:text-white"
+                  className="px-3 py-2 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white"
                 >
                   {t.navbar.education}
                 </a>
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-3 py-2 rounded-lg text-blue-400 hover:bg-zinc-800"
+                  className="px-3 py-2 rounded-lg text-blue-600 dark:text-blue-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold"
                 >
                   {t.navbar.contact}
                 </a>
               </nav>
 
-              <div className="pt-3 border-t border-zinc-800 flex flex-col gap-2">
+              <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800 flex flex-col gap-2">
                 <button
                   onClick={() => {
                     setIsModalOpen(true);
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-xs"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 text-white font-medium text-xs shadow-sm hover:bg-blue-500"
                 >
                   <IconCopy className="w-4 h-4" /> {t.navbar.recruiterSheet}
                 </button>
                 <div className="flex gap-2 text-xs">
                   <a
                     href={`mailto:${cvData.personal.email}`}
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-zinc-800 text-zinc-200 rounded-lg"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700"
                   >
                     <IconMail className="w-3.5 h-3.5" /> {t.navbar.email}
                   </a>
                   <a
                     href={`tel:${cvData.personal.phone}`}
-                    className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-zinc-800 text-zinc-200 rounded-lg"
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700"
                   >
                     <IconPhone className="w-3.5 h-3.5" /> {t.navbar.call}
                   </a>

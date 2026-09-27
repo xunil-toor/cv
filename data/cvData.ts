@@ -204,6 +204,13 @@ export interface UIStrings {
     switchToEn: string;
     switchToFr: string;
   };
+  theme: {
+    toggleLabel: string;
+    light: string;
+    dark: string;
+    switchToLight: string;
+    switchToDark: string;
+  };
 }
 
 export const CV_DATA: CVData = {
@@ -295,7 +302,6 @@ export const CV_DATA: CVData = {
         { name: "MySQL / PostgreSQL", level: "Avancé" },
         { name: "SGBDR (SQL)", level: "Avancé" },
         { name: "Drupal (Front Integration)", level: "Avancé" },
-        { name: "HubSpot", level: "Opérationnel" },
       ],
     },
   },
@@ -597,7 +603,6 @@ export const CV_DATA_EN: CVData = {
         { name: "MySQL / PostgreSQL", level: "Advanced" },
         { name: "RDBMS (SQL)", level: "Advanced" },
         { name: "Drupal (Front Integration)", level: "Advanced" },
-        { name: "HubSpot", level: "Operational" },
       ],
     },
   },
@@ -931,6 +936,13 @@ export const translations: Record<"fr" | "en", UIStrings> = {
       switchToEn: "Passer en anglais",
       switchToFr: "Passer en français",
     },
+    theme: {
+      toggleLabel: "Changer de thème",
+      light: "Clair",
+      dark: "Sombre",
+      switchToLight: "Passer en mode clair",
+      switchToDark: "Passer en mode sombre",
+    },
   },
   en: {
     navbar: {
@@ -1051,6 +1063,13 @@ export const translations: Record<"fr" | "en", UIStrings> = {
       toggleLabel: "Change language",
       switchToEn: "Switch to English",
       switchToFr: "Passer en français",
+    },
+    theme: {
+      toggleLabel: "Toggle theme",
+      light: "Light",
+      dark: "Dark",
+      switchToLight: "Switch to light mode",
+      switchToDark: "Switch to dark mode",
     },
   },
 };
