@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 import { CV_DATA } from "@/data/cvData";
 import { IconCheck, IconCopy } from "./Icons";
 
@@ -10,8 +11,15 @@ interface RecruiterModalProps {
 }
 
 export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
+  const { language, t } = useLanguage();
   const [copied, setCopied] = useState(false);
-  const [format, setFormat] = useState<"fr" | "en">("fr");
+  const [format, setFormat] = useState<"fr" | "en">(language);
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormat(language);
+    }
+  }, [isOpen, language]);
 
   if (!isOpen) return null;
 
@@ -71,17 +79,17 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <div>
               <h3 id="modal-title" className="text-base font-semibold text-zinc-100">
-                Fiche Synthèse Recruteur (Format ATS / Markdown)
+                {t.recruiterModal.title}
               </h3>
               <p className="text-xs text-zinc-400">
-                Idéal pour intégrer directement dans votre ATS, CRM ou notes d'entretien
+                {t.recruiterModal.subtitle}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
             className="text-zinc-400 hover:text-zinc-100 p-1.5 rounded-lg hover:bg-zinc-800 transition-colors"
-            aria-label="Fermer"
+            aria-label={t.recruiterModal.closeBtn}
           >
             ✕
           </button>
@@ -98,7 +106,7 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
                   : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
-              Français (FR)
+              {t.recruiterModal.btnFr}
             </button>
             <button
               onClick={() => setFormat("en")}
@@ -108,7 +116,7 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
                   : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
-              English (EN)
+              {t.recruiterModal.btnEn}
             </button>
           </div>
 
@@ -122,11 +130,11 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
           >
             {copied ? (
               <>
-                <IconCheck className="w-4 h-4" /> Copié dans le presse-papier !
+                <IconCheck className="w-4 h-4" /> {t.recruiterModal.copiedMsg}
               </>
             ) : (
               <>
-                <IconCopy className="w-4 h-4" /> Copier le résumé Markdown
+                <IconCopy className="w-4 h-4" /> {t.recruiterModal.copyBtn}
               </>
             )}
           </button>
@@ -139,12 +147,12 @@ export function RecruiterModal({ isOpen, onClose }: RecruiterModalProps) {
 
         {/* Footer */}
         <div className="flex items-center justify-between px-6 py-3 border-t border-zinc-800 bg-zinc-950/80 text-xs text-zinc-400">
-          <span>Prêt pour copie directe vers Bullhorn, Greenhouse, Lever, Notion, etc.</span>
+          <span>{t.recruiterModal.footerNote}</span>
           <button
             onClick={onClose}
             className="px-4 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 transition-colors"
           >
-            Fermer
+            {t.recruiterModal.closeBtn}
           </button>
         </div>
       </div>

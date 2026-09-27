@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { CV_DATA } from "@/data/cvData";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   IconGraduation,
   IconUsers,
@@ -10,15 +12,20 @@ import {
 } from "./Icons";
 
 export function LeadershipSection() {
+  const { cvData, t } = useLanguage();
+
   const getIconForType = (type: string) => {
-    switch (type) {
-      case "Enseignement Supérieur":
+    switch (type.toLowerCase()) {
+      case "enseignement supérieur":
+      case "higher education":
         return <IconGraduation className="w-5 h-5 text-blue-400" />;
-      case "Mentorat":
+      case "mentorat":
+      case "mentorship":
         return <IconUsers className="w-5 h-5 text-emerald-400" />;
-      case "Cybersécurité":
+      case "cybersécurité":
+      case "cybersecurity":
         return <IconShield className="w-5 h-5 text-purple-400" />;
-      case "Hackathon":
+      case "hackathon":
         return <IconAward className="w-5 h-5 text-amber-400" />;
       default:
         return <IconSparkles className="w-5 h-5 text-blue-400" />;
@@ -33,19 +40,19 @@ export function LeadershipSection() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 mb-3">
             <IconUsers className="w-3.5 h-3.5" />
-            Leadership, Transmission & Challenges
+            {t.leadership.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Enseignement, Mentorat & Cybersécurité
+            {t.leadership.title}
           </h2>
           <p className="mt-3 text-sm sm:text-base text-zinc-400">
-            Un profil d&apos;ingénieur complet : capacité avérée à transmettre le savoir, encadrer la relève et relever des défis techniques.
+            {t.leadership.subtitle}
           </p>
         </div>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {CV_DATA.leadershipAndTeaching.map((item, idx) => (
+          {cvData.leadershipAndTeaching.map((item, idx) => (
             <div
               key={idx}
               className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700 transition-all flex flex-col justify-between"
@@ -82,9 +89,9 @@ export function LeadershipSection() {
               </div>
 
               <div className="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs text-zinc-400">
-                <span className="font-medium text-zinc-400">Domaine : {item.type}</span>
+                <span className="font-medium text-zinc-400">{t.leadership.fieldLabel} {item.type}</span>
                 <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                  ✓ Impact Démontré
+                  {t.leadership.provenImpact}
                 </span>
               </div>
             </div>

@@ -1,19 +1,20 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { CV_DATA } from "@/data/cvData";
-import { IconCode, IconTerminal, IconLayers, IconBuilding, IconCheck } from "./Icons";
+import { useLanguage } from "@/context/LanguageContext";
+import { IconCode, IconTerminal, IconLayers, IconBuilding } from "./Icons";
 
 export function SkillsMatrix() {
+  const { cvData, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const categories = [
-    { id: "all", label: "Toutes les compétences", icon: IconLayers },
-    { id: "frontEnd", label: "Front-End & Core", icon: IconCode },
-    { id: "backEnd", label: "Back-End & APIs", icon: IconTerminal },
-    { id: "toolsDevOps", label: "DevOps & Méthodes", icon: IconBuilding },
-    { id: "databases", label: "Données & CMS", icon: IconLayers },
+    { id: "all", label: t.skills.allCategories, icon: IconLayers },
+    { id: "frontEnd", label: t.skills.frontEndCat, icon: IconCode },
+    { id: "backEnd", label: t.skills.backEndCat, icon: IconTerminal },
+    { id: "toolsDevOps", label: t.skills.devOpsCat, icon: IconBuilding },
+    { id: "databases", label: t.skills.databasesCat, icon: IconLayers },
   ];
 
   const allSkillsList = useMemo(() => {
@@ -21,11 +22,11 @@ export function SkillsMatrix() {
       categoryKey: string;
       categoryTitle: string;
       name: string;
-      level: "Expert" | "Avancé" | "Opérationnel";
+      level: string;
       badge?: string;
     }[] = [];
 
-    Object.entries(CV_DATA.skillsCategories).forEach(([key, category]) => {
+    Object.entries(cvData.skillsCategories).forEach(([key, category]) => {
       category.skills.forEach((s) => {
         list.push({
           categoryKey: key,
@@ -37,7 +38,7 @@ export function SkillsMatrix() {
       });
     });
     return list;
-  }, []);
+  }, [cvData]);
 
   const filteredSkills = useMemo(() => {
     return allSkillsList.filter((item) => {
@@ -58,13 +59,13 @@ export function SkillsMatrix() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-950/80 text-blue-400 border border-blue-800/60 mb-3">
             <IconCode className="w-3.5 h-3.5" />
-            Matrice des Compétences & Stack Technique
+            {t.skills.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Compétences & Maîtrise Technique
+            {t.skills.title}
           </h2>
           <p className="mt-3 text-sm sm:text-base text-zinc-400">
-            Une expertise éprouvée de 6+ ans centrée sur l&apos;écosystème React / Next.js avec une réelle polyvalence Full-Stack & DevOps.
+            {t.skills.subtitle}
           </p>
         </div>
 
@@ -97,7 +98,7 @@ export function SkillsMatrix() {
           <div className="relative w-full md:w-72">
             <input
               type="text"
-              placeholder="Rechercher une compétence..."
+              placeholder={t.skills.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-9 pr-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
@@ -122,7 +123,7 @@ export function SkillsMatrix() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
           {filteredSkills.map((skill, idx) => {
             const isExpert = skill.level === "Expert";
-            const isAvance = skill.level === "Avancé";
+            const isAvance = skill.level === "Avancé" || skill.level === "Advanced";
 
             return (
               <div
@@ -181,15 +182,15 @@ export function SkillsMatrix() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-            <span><strong className="text-zinc-200">Expert :</strong> Production quotidienne, maîtrise approfondie & architecture</span>
+            <span><strong className="text-zinc-200">{t.skills.legendExpert}</strong> {t.skills.legendExpertDesc}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-blue-400" />
-            <span><strong className="text-zinc-200">Avancé :</strong> Autonome en entreprise, projets livrés</span>
+            <span><strong className="text-zinc-200">{t.skills.legendAdvanced}</strong> {t.skills.legendAdvancedDesc}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-            <span><strong className="text-zinc-200">Opérationnel :</strong> Capacité d&apos;intervention et maintenance</span>
+            <span><strong className="text-zinc-200">{t.skills.legendOperational}</strong> {t.skills.legendOperationalDesc}</span>
           </div>
         </div>
 

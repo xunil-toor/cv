@@ -1,14 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { CV_DATA } from "@/data/cvData";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   IconMail,
   IconPhone,
   IconMapPin,
   IconCopy,
   IconCheck,
-  IconDownload,
   IconSparkles,
   IconShield,
   IconLayers,
@@ -17,24 +16,25 @@ import {
 import { RecruiterModal } from "./RecruiterModal";
 
 export function Hero() {
+  const { cvData, t } = useLanguage();
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const copyEmail = () => {
-    navigator.clipboard.writeText(CV_DATA.personal.email);
+    navigator.clipboard.writeText(cvData.personal.email);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   const copyPhone = () => {
-    navigator.clipboard.writeText(CV_DATA.personal.phone);
+    navigator.clipboard.writeText(cvData.personal.phone);
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 
   return (
-    <section id="presentation" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section id="presentation" className="relative pt-36 pb-20 sm:pt-40 md:pt-48 md:pb-28 overflow-hidden">
       {/* Background Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-blue-600/15 via-indigo-600/10 to-purple-600/15 blur-3xl -z-10 pointer-events-none rounded-full" />
       <div className="absolute top-10 right-10 w-72 h-72 bg-blue-500/10 blur-3xl -z-10 pointer-events-none rounded-full" />
@@ -49,15 +49,15 @@ export function Hero() {
             <div className="flex flex-wrap items-center gap-2.5">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-950/80 text-blue-400 border border-blue-800/60 shadow-xs">
                 <IconSparkles className="w-3.5 h-3.5 text-blue-400" />
-                Spécialiste Front-End & Architecture
+                {t.hero.specialistBadge}
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                Disponible immédiatement
+                {t.hero.availableBadge}
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-zinc-900 text-zinc-300 border border-zinc-800">
                 <IconMapPin className="w-3.5 h-3.5 text-zinc-400" />
-                Bordeaux / Full Remote
+                {t.hero.locationBadge}
               </span>
             </div>
 
@@ -67,7 +67,7 @@ export function Hero() {
                 Jianni <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">Nirinarisoa</span>
               </h1>
               <p className="mt-2 text-xl sm:text-2xl font-semibold text-zinc-200">
-                {CV_DATA.personal.title}
+                {cvData.personal.title}
               </p>
               <p className="mt-1 text-sm sm:text-base text-zinc-400 font-mono">
                 React.js • Next.js (App Router) • TypeScript • Node.js • Spring Boot
@@ -76,33 +76,33 @@ export function Hero() {
 
             {/* Value proposition paragraph */}
             <p className="text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed">
-              {CV_DATA.summary.pitch}
+              {cvData.summary.pitch}
             </p>
 
             {/* Direct Contact Bar */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
-                href={`mailto:${CV_DATA.personal.email}`}
+                href={`mailto:${cvData.personal.email}`}
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <IconMail className="w-4 h-4" />
-                <span>Me contacter</span>
+                <span>{t.hero.contactMe}</span>
               </a>
 
               <button
                 onClick={copyEmail}
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 transition-colors"
-                title="Copier l'adresse email"
+                title={t.hero.copyEmailTitle}
               >
                 {copiedEmail ? (
                   <>
                     <IconCheck className="w-4 h-4 text-emerald-400" />
-                    <span className="text-emerald-400">Email copié !</span>
+                    <span className="text-emerald-400">{t.hero.copiedEmail}</span>
                   </>
                 ) : (
                   <>
                     <IconCopy className="w-4 h-4 text-zinc-400" />
-                    <span>{CV_DATA.personal.email}</span>
+                    <span>{cvData.personal.email}</span>
                   </>
                 )}
               </button>
@@ -110,17 +110,17 @@ export function Hero() {
               <button
                 onClick={copyPhone}
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 transition-colors"
-                title="Copier le numéro de téléphone"
+                title={t.hero.copyPhoneTitle}
               >
                 {copiedPhone ? (
                   <>
                     <IconCheck className="w-4 h-4 text-emerald-400" />
-                    <span className="text-emerald-400">Téléphone copié !</span>
+                    <span className="text-emerald-400">{t.hero.copiedPhone}</span>
                   </>
                 ) : (
                   <>
                     <IconPhone className="w-4 h-4 text-zinc-400" />
-                    <span>{CV_DATA.personal.phoneDisplay}</span>
+                    <span>{cvData.personal.phoneDisplay}</span>
                   </>
                 )}
               </button>
@@ -130,14 +130,14 @@ export function Hero() {
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-gradient-to-r from-purple-950/60 to-indigo-950/60 hover:from-purple-900/60 hover:to-indigo-900/60 text-purple-200 border border-purple-800/50 transition-colors"
               >
                 <IconCopy className="w-4 h-4 text-purple-400" />
-                <span>Synthèse ATS / Recruteur</span>
+                <span>{t.hero.atsSummary}</span>
               </button>
             </div>
           </div>
 
           {/* Quick Metrics Grid */}
           <div className="w-full lg:w-[420px] grid grid-cols-2 gap-3.5">
-            {CV_DATA.metrics.map((metric, idx) => (
+            {cvData.metrics.map((metric, idx) => (
               <div
                 key={idx}
                 className="p-5 rounded-2xl bg-zinc-900/70 border border-zinc-800/90 backdrop-blur-xs hover:border-zinc-700 transition-all group"
@@ -163,10 +163,10 @@ export function Hero() {
               <IconLayers className="w-5 h-5" />
             </div>
             <h3 className="text-base font-bold text-zinc-100 mb-2">
-              {CV_DATA.summary.strengths[0].title}
+              {cvData.summary.strengths[0].title}
             </h3>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              {CV_DATA.summary.strengths[0].description}
+              {cvData.summary.strengths[0].description}
             </p>
           </div>
 
@@ -175,10 +175,10 @@ export function Hero() {
               <IconShield className="w-5 h-5" />
             </div>
             <h3 className="text-base font-bold text-zinc-100 mb-2">
-              {CV_DATA.summary.strengths[1].title}
+              {cvData.summary.strengths[1].title}
             </h3>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              {CV_DATA.summary.strengths[1].description}
+              {cvData.summary.strengths[1].description}
             </p>
           </div>
 
@@ -187,10 +187,10 @@ export function Hero() {
               <IconGraduation className="w-5 h-5" />
             </div>
             <h3 className="text-base font-bold text-zinc-100 mb-2">
-              {CV_DATA.summary.strengths[2].title}
+              {cvData.summary.strengths[2].title}
             </h3>
             <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              {CV_DATA.summary.strengths[2].description}
+              {cvData.summary.strengths[2].description}
             </p>
           </div>
         </div>

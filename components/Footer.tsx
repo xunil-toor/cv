@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import { CV_DATA } from "@/data/cvData";
-import { IconMail, IconPhone, IconMapPin, IconPrint } from "./Icons";
+import { useLanguage } from "@/context/LanguageContext";
+import { IconPrint } from "./Icons";
 
 export function Footer() {
+  const { cvData, t } = useLanguage();
+
   return (
     <footer className="py-12 bg-zinc-950 border-t border-zinc-900 text-xs text-zinc-400 no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,31 +14,31 @@ export function Footer() {
           
           <div className="text-center md:text-left">
             <span className="font-bold text-sm text-zinc-100 block">
-              {CV_DATA.personal.name}
+              {cvData.personal.name}
             </span>
             <span className="text-zinc-400 text-xs">
-              {CV_DATA.personal.title} • {CV_DATA.personal.location}
+              {cvData.personal.title} • {cvData.personal.location}
             </span>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-400">
             <a href="#presentation" className="hover:text-zinc-200 transition-colors">
-              Profil
+              {t.footer.profile}
             </a>
             <a href="#competences" className="hover:text-zinc-200 transition-colors">
-              Compétences
+              {t.footer.skills}
             </a>
             <a href="#experiences" className="hover:text-zinc-200 transition-colors">
-              Expériences
+              {t.footer.experiences}
             </a>
             <a href="#leadership" className="hover:text-zinc-200 transition-colors">
-              Enseignement
+              {t.footer.leadership}
             </a>
             <a href="#formation" className="hover:text-zinc-200 transition-colors">
-              Formation
+              {t.footer.education}
             </a>
             <a href="#contact" className="hover:text-blue-400 transition-colors">
-              Contact
+              {t.footer.contact}
             </a>
           </div>
 
@@ -46,17 +48,17 @@ export function Footer() {
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800 transition-colors"
             >
               <IconPrint className="w-3.5 h-3.5" />
-              <span>Imprimer le CV</span>
+              <span>{t.footer.printCV}</span>
             </button>
           </div>
 
         </div>
 
         <div className="mt-8 pt-6 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-400">
-          <p>© {new Date().getFullYear()} {CV_DATA.personal.name}. Conçu avec Next.js, React & Tailwind CSS.</p>
+          <p>© {new Date().getFullYear()} {cvData.personal.name}. {t.footer.copyrightText}</p>
           <p className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span>Statut : {CV_DATA.personal.availability}</span>
+            <span>{t.footer.statusLabel} {cvData.personal.availability}</span>
           </p>
         </div>
       </div>

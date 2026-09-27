@@ -1,28 +1,29 @@
 "use client";
 
 import React, { useState } from "react";
-import { CV_DATA, Experience } from "@/data/cvData";
+import { useLanguage } from "@/context/LanguageContext";
+import { Experience } from "@/data/cvData";
 import {
   IconBriefcase,
   IconBuilding,
   IconCalendar,
   IconMapPin,
   IconSparkles,
-  IconChevronRight,
   IconLayers,
 } from "./Icons";
 
 export function ExperienceSection() {
+  const { cvData, t } = useLanguage();
   const [filter, setFilter] = useState<string>("all");
 
   const filterOptions = [
-    { id: "all", label: "Toutes les expériences" },
-    { id: "react-next", label: "React / Next.js" },
-    { id: "lead-archi", label: "Lead & Architecture" },
-    { id: "public-enterprise", label: "Secteur Public & Grands Comptes" },
+    { id: "all", label: t.experiences.filterAll },
+    { id: "react-next", label: t.experiences.filterReactNext },
+    { id: "lead-archi", label: t.experiences.filterLeadArchi },
+    { id: "public-enterprise", label: t.experiences.filterPublicEnterprise },
   ];
 
-  const filteredExperiences = CV_DATA.experiences.filter((exp) => {
+  const filteredExperiences = cvData.experiences.filter((exp) => {
     if (filter === "all") return true;
     return exp.category.includes(filter as Experience["category"][number]);
   });
@@ -35,13 +36,13 @@ export function ExperienceSection() {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-950/80 text-indigo-400 border border-indigo-800/60 mb-3">
             <IconBriefcase className="w-3.5 h-3.5" />
-            Parcours Professionnel & Réalisations Clés
+            {t.experiences.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Expériences & Projets Marquants
+            {t.experiences.title}
           </h2>
           <p className="mt-3 text-sm sm:text-base text-zinc-400">
-            6+ années de réalisations concrètes : applications critiques, refontes d&apos;envergure et projets SaaS.
+            {t.experiences.subtitle}
           </p>
         </div>
 
@@ -64,7 +65,7 @@ export function ExperienceSection() {
 
         {/* Timeline List */}
         <div className="space-y-12">
-          {filteredExperiences.map((exp: Experience, idx: number) => (
+          {filteredExperiences.map((exp: Experience) => (
             <div
               key={exp.id}
               className="relative p-6 sm:p-8 rounded-2xl bg-zinc-900/50 border border-zinc-800/80 hover:border-zinc-700/90 transition-all backdrop-blur-xs"
@@ -108,7 +109,7 @@ export function ExperienceSection() {
               <div className="mt-6 space-y-4">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center gap-2">
                   <IconSparkles className="w-4 h-4 text-yellow-400" />
-                  Missions & Projets Réalisés
+                  {t.experiences.missionsHeading}
                 </h4>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -135,12 +136,12 @@ export function ExperienceSection() {
 
                       {/* Tech badges */}
                       <div className="mt-3 pt-3 border-t border-zinc-800/60 flex flex-wrap gap-1.5">
-                        {hl.technologies.map((t, tIdx) => (
+                        {hl.technologies.map((tech, tIdx) => (
                           <span
                             key={tIdx}
                             className="px-2 py-0.5 text-[11px] font-mono rounded bg-blue-950/40 text-blue-300 border border-blue-900/40"
                           >
-                            {t}
+                            {tech}
                           </span>
                         ))}
                       </div>
@@ -152,7 +153,7 @@ export function ExperienceSection() {
               {/* Skills Footer */}
               <div className="mt-6 pt-4 border-t border-zinc-800/70 flex flex-wrap items-center gap-2">
                 <span className="text-xs font-semibold text-zinc-400 mr-1">
-                  Technologies associées :
+                  {t.experiences.relatedTech}
                 </span>
                 {exp.skills.map((skill, sIdx) => (
                   <span
@@ -171,11 +172,11 @@ export function ExperienceSection() {
         <div className="mt-16 p-6 sm:p-8 rounded-2xl bg-zinc-900/40 border border-zinc-800/70">
           <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-6">
             <IconLayers className="w-5 h-5 text-purple-400" />
-            Missions Spécifiques & Expériences Complémentaires
+            {t.experiences.additionalRolesHeading}
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CV_DATA.additionalRoles.map((role, idx) => (
+            {cvData.additionalRoles.map((role, idx) => (
               <div
                 key={idx}
                 className="p-4 rounded-xl bg-zinc-950/60 border border-zinc-800/80 hover:border-zinc-700 transition-colors"
